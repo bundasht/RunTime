@@ -2,8 +2,10 @@ import os
 
 import h2o
 from django.shortcuts import render
+from rest_framework import viewsets
 from django.views import generic
 from . import models
+from .serializers import UserInfoSerializer
 
 from RunTime.runtime.runtime.settings import BASE_DIR
 
@@ -61,6 +63,9 @@ def login(request):
     return render(request, 'login.html')
 
 
-class UserInfoView(generic.CreateView):
-    fields = '__all__'
-    model = models.UserInfo
+class UserInfoViewSet(viewsets.ModelViewSet):
+
+    queryset = models.UserInfo.objects.all()
+    serializer_class = UserInfoSerializer
+
+
