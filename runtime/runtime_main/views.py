@@ -42,6 +42,11 @@ def predict_weather(data_dict):
     return data_prediction
 
 
+def calc_bmr(data_dict):
+    bmr = 10 * float(data_dict['weight']) + 6.25 * float(data_dict['height']) + 5 * float(data_dict['age']) - 130
+    return bmr
+
+
 def index(request):
     return render(request, 'index.html')
 
