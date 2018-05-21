@@ -1,5 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import generic
+from . import models
+
 
 # Create your views here.
 def index(request):
@@ -8,3 +11,8 @@ def register(request):
     return render(request, 'register.html')
 def login(request):
     return render(request, 'login.html')
+
+
+class UserInfoView(generic.CreateView):
+    fields = '__all__'
+    model = models.UserInfo

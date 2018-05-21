@@ -19,7 +19,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('runtime', views.index, name='index'),
-    path('register', views.register, name='index'),
-    path('login', views.login, name='index'),
+    path('runtime', views.index, name='runtime'),
+    path('register', views.register, name='register'),
+    path('login', views.login, name='login'),
+    path('user-info/', views.UserInfoView.as_view(), name='user_info')
 ]

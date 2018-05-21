@@ -25,7 +25,7 @@ SECRET_KEY = '2997ch9m#dz33gpjtujm)2!ieb@7=sde2hc5hmuk935gbb6y17'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.22']
 
 
 # Application definition
@@ -80,7 +80,7 @@ DATABASES = {
         'NAME':  'runtime',
         'USER': 'postgres',
         'PASSWORD': 'bundash00',
-        'HOST': 'localhost',
+        'HOST': '192.168.1.22',
         'PORT': '5434',
     }
 }
