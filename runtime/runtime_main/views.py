@@ -2,6 +2,8 @@ import os
 
 import h2o
 from django.shortcuts import render
+from django.views import generic
+from . import models
 
 from RunTime.runtime.runtime.settings import BASE_DIR
 
@@ -57,3 +59,8 @@ def register(request):
 
 def login(request):
     return render(request, 'login.html')
+
+
+class UserInfoView(generic.CreateView):
+    fields = '__all__'
+    model = models.UserInfo
