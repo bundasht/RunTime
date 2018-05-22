@@ -25,7 +25,8 @@ SECRET_KEY = '2997ch9m#dz33gpjtujm)2!ieb@7=sde2hc5hmuk935gbb6y17'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.22']
+ALLOWED_HOSTS = ['192.168.1.22',
+                 '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'runtime_main',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -74,14 +76,21 @@ WSGI_APPLICATION = 'runtime.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE':'django.db.backends.postgresql_psycopg2',
+#         'NAME':  'runtime',
+#         'USER': 'postgres',
+#         'PASSWORD': 'bundash00',
+#         'HOST': '192.168.1.22',
+#         'PORT': '5434',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME':  'runtime',
-        'USER': 'postgres',
-        'PASSWORD': 'bundash00',
-        'HOST': '192.168.1.22',
-        'PORT': '5434',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

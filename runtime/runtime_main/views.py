@@ -5,9 +5,10 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from django.views import generic
 from . import models
-from .serializers import UserInfoSerializer
+from .serializers import UserInfoSerializer, UserSerializer
+from rest_framework.decorators import api_view
 
-from RunTime.runtime.runtime.settings import BASE_DIR
+from runtime.settings import BASE_DIR
 
 
 def predict_health(data_dict):
@@ -63,9 +64,23 @@ def login(request):
     return render(request, 'login.html')
 
 
+class UserViewSet(viewsets.ModelViewSet):
+
+    queryset = models.MyUser.objects.all()
+    serializer_class = UserSerializer
+
+
 class UserInfoViewSet(viewsets.ModelViewSet):
 
     queryset = models.UserInfo.objects.all()
     serializer_class = UserInfoSerializer
+
+
+@api_view(['GET', 'POST'])
+def prediction(request):
+    import pdb
+    pdb.set_trace()
+    return
+
 
 
