@@ -1,10 +1,8 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-<<<<<<< HEAD
+
 import datetime
 
-=======
->>>>>>> teraz
 # Create your models here.
 
 
@@ -40,11 +38,8 @@ class UserInfo(models.Model):
     food_calories = models.PositiveIntegerField(default=0)
 
     active_hours = models.PositiveIntegerField(validators=[
-<<<<<<< HEAD
             MaxValueValidator(24),
-=======
             MaxValueValidator(10),
->>>>>>> teraz
             MinValueValidator(1)
         ])
 
