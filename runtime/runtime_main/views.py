@@ -1,13 +1,15 @@
 import os
-
+import requests
+import json
 import h2o
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.response import Response
 from django.views import generic
 from . import models
-from .serializers import UserInfoSerializer
+from .serializers import UserInfoSerializer, PredictionSerializer, MultiSerializerViewSet
 
-from RunTime.runtime.runtime.settings import BASE_DIR
+from runtime.settings import BASE_DIR
 
 
 def predict_health(data_dict):
@@ -62,10 +64,38 @@ def register(request):
 def login(request):
     return render(request, 'login.html')
 
+def get_weather(cords):
+    API_key = '4e9e25660657a41a100167b6ba0035ce'
+    pass
 
-class UserInfoViewSet(viewsets.ModelViewSet):
+class UserInfoViewSet(MultiSerializerViewSet):
 
     queryset = models.UserInfo.objects.all()
-    serializer_class = UserInfoSerializer
+    serializer_class = {
+        'create': UserInfoSerializer,
+        # 'list': PredictionSerializer
+    }
+
+    def create(self, request, *args, **kwargs):
+        import pdb
+        pdb.set_trace()
+
+        super(UserInfoViewSet, self).create(request, *args, **kwargs)
+
+        last_item = models.UserInfo.objects.latest('created')
+        last_item = {'values': 5}
+        # value = predykcje(last_item)
+
+        data = PredictionSerializer(last_item).data
+        return Response(data)
+
+    # def list(self, request, *args, **kwargs):
+    #     data = models.UserInfo.objects.latest('created')
+    #
+    #     funkcja(data)
+    #
+    #
+    #     data = PredictionSerializer(data).data
+    #     return data
 
 
