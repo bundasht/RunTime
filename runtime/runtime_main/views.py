@@ -7,7 +7,12 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from django.views import generic
 from . import models
+<<<<<<< HEAD
 from .serializers import UserInfoSerializer, PredictionSerializer, MultiSerializerViewSet
+=======
+from .serializers import UserInfoSerializer, UserSerializer
+from rest_framework.decorators import api_view
+>>>>>>> teraz
 
 from runtime.settings import BASE_DIR
 
@@ -68,7 +73,17 @@ def get_weather(cords):
     API_key = '4e9e25660657a41a100167b6ba0035ce'
     pass
 
+<<<<<<< HEAD
 class UserInfoViewSet(MultiSerializerViewSet):
+=======
+class UserViewSet(viewsets.ModelViewSet):
+
+    queryset = models.MyUser.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserInfoViewSet(viewsets.ModelViewSet):
+>>>>>>> teraz
 
     queryset = models.UserInfo.objects.all()
     serializer_class = {
@@ -97,5 +112,13 @@ class UserInfoViewSet(MultiSerializerViewSet):
     #
     #     data = PredictionSerializer(data).data
     #     return data
+
+
+@api_view(['GET', 'POST'])
+def prediction(request):
+    import pdb
+    pdb.set_trace()
+    return
+
 
 

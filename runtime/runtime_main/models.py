@@ -1,11 +1,30 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+<<<<<<< HEAD
 import datetime
 
+=======
+>>>>>>> teraz
 # Create your models here.
 
 
+class MyUser(models.Model):
+
+    f_name = models.CharField(max_length=56)
+
+    l_name = models.CharField(max_length=56)
+
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.f_name + ' ' + self.l_name
+
+
 class UserInfo(models.Model):
+
+    user = models.ForeignKey(MyUser,
+                             related_name='user_info',
+                             on_delete=models.CASCADE)
 
     weight = models.PositiveIntegerField(default=0)
 
@@ -21,7 +40,11 @@ class UserInfo(models.Model):
     food_calories = models.PositiveIntegerField(default=0)
 
     active_hours = models.PositiveIntegerField(validators=[
+<<<<<<< HEAD
             MaxValueValidator(24),
+=======
+            MaxValueValidator(10),
+>>>>>>> teraz
             MinValueValidator(1)
         ])
 
