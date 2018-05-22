@@ -77,8 +77,6 @@ class UserInfoViewSet(MultiSerializerViewSet):
     }
 
     def create(self, request, *args, **kwargs):
-        import pdb
-        pdb.set_trace()
 
         super(UserInfoViewSet, self).create(request, *args, **kwargs)
 
