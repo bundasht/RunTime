@@ -6,8 +6,12 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response
 from django.views import generic
-from . import models
-from .serializers import UserInfoSerializer, PredictionSerializer, MultiSerializerViewSet
+from .models import *
+
+
+from .serializers import UserInfoSerializer, UserSerializer
+from rest_framework.decorators import api_view
+
 
 from runtime.settings import BASE_DIR
 
@@ -53,39 +57,43 @@ def calc_bmr(data_dict):
     return bmr
 
 
-def index(request):
-    return render(request, 'index.html')
-
-
-def register(request):
-    return render(request, 'register.html')
-
-
-def login(request):
-    return render(request, 'login.html')
-
 def get_weather(cords):
     API_key = '4e9e25660657a41a100167b6ba0035ce'
     pass
 
-class UserInfoViewSet(MultiSerializerViewSet):
 
-    queryset = models.UserInfo.objects.all()
-    serializer_class = {
-        'create': UserInfoSerializer,
-        # 'list': PredictionSerializer
-    }
+class UserInfoViewSet(viewsets.ModelViewSet):
 
-    def create(self, request, *args, **kwargs):
+    queryset = UserInfo.objects.all()
+    serializer_class = UserInfoSerializer
 
-        super(UserInfoViewSet, self).create(request, *args, **kwargs)
 
-        last_item = models.UserInfo.objects.latest('created')
-        last_item = {'values': 5}
-        # value = predykcje(last_item)
+class UserViewSet(viewsets.ModelViewSet):
 
-        data = PredictionSerializer(last_item).data
-        return Response(data)
+    queryset = MyUser.objects.all()
+    serializer_class = UserSerializer
+
+
+@api_view(['GET', 'POST'])
+def prediction(request):
+
+    if request.method == 'POST':
+        import pdb
+        pdb.set_trace()
+        user_id = request.data['user']
+        user_info = UserInfo.objects.filter(user=user_id).latest('created')
+
+
+        age = user_info.age
+        weight = user_info.weight
+        age = user_info.age
+        age = user_info.age
+        age = user_info.age
+        age = user_info.age
+
+        data = ['predykcje']
+        return Response({"result": data})
+    return Response({"result": 'Dawaj'})
 
     # def list(self, request, *args, **kwargs):
     #     data = models.UserInfo.objects.latest('created')

@@ -20,14 +20,13 @@ from . import views
 
 router = DefaultRouter()
 
+router.register(r'users', views.UserViewSet)
 router.register(r'user_info', views.UserInfoViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('runtime', views.index, name='runtime'),
-    path('register', views.register, name='register'),
-    path('login', views.login, name='login')
+    path('prediction/', views.prediction, name='prediction')
 ]
 
 urlpatterns += router.urls

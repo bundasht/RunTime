@@ -87,6 +87,17 @@ WSGI_APPLICATION = 'runtime.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE':'django.db.backends.postgresql_psycopg2',
+#         'NAME':  'runtime',
+#         'USER': 'postgres',
+#         'PASSWORD': 'bundash00',
+#         'HOST': '192.168.1.22',
+#         'PORT': '5434',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
