@@ -78,18 +78,23 @@ class UserViewSet(viewsets.ModelViewSet):
 def prediction(request):
 
     if request.method == 'POST':
-        import pdb
-        pdb.set_trace()
         user_id = request.data['user']
         user_info = UserInfo.objects.filter(user=user_id).latest('created')
 
 
         age = user_info.age
         weight = user_info.weight
-        age = user_info.age
-        age = user_info.age
-        age = user_info.age
-        age = user_info.age
+        height = user_info.age
+
+        food_hours = user_info.food_hours
+        food_calories = user_info.food_calories
+        active_hours = user_info.active_hours
+        activity_rating = user_info.activity_rating
+        comfort_rating = user_info.comfort_rating
+        sleep_hours = user_info.sleep_hours
+        sleep_duration = user_info.sleep_duration
+
+
 
         data = ['predykcje']
         return Response({"result": data})
