@@ -7,8 +7,6 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from django.views import generic
 from .models import *
-
-
 from .serializers import UserInfoSerializer, UserSerializer
 from rest_framework.decorators import api_view
 
@@ -57,8 +55,9 @@ def calc_bmr(data_dict):
     return bmr
 
 
-def get_weather(cords):
+def get_weather(lat,lon,time):
     API_key = '4e9e25660657a41a100167b6ba0035ce'
+    req = 'api.openweathermap.org/data/2.5/forecast?lat={}&lon={}'.format()
     pass
 
 
